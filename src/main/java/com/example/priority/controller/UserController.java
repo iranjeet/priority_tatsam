@@ -1,5 +1,6 @@
 package com.example.priority.controller;
 
+import com.example.priority.dto.request.ExpenseRequest;
 import com.example.priority.dto.request.RequestUserDetails;
 import com.example.priority.dto.responce.GenericResponse;
 import com.example.priority.service.impl.UserServiceImpl;
@@ -23,12 +24,10 @@ public class UserController {
         log.info(response.toString());
         return response;
     }
-//For Activating new user
-    @GetMapping("activateUser/{id}")
-    GenericResponse activateUser(@PathVariable Long id) {
-        log.info(id.toString());
-        GenericResponse response = userService.activateUser(id);
-        log.info(response.toString());
-        return response;
+
+
+    @PostMapping("createExpense")
+    GenericResponse createExpense(@RequestBody ExpenseRequest expenseRequest){
+        return userService.createExpense(expenseRequest);
     }
 }
